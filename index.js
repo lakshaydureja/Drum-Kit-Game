@@ -3,11 +3,13 @@ for (var i = 0; i < document.querySelectorAll(".drum").length; i++) {
   document.querySelectorAll("button")[i].addEventListener("click", function () {
     var bName = this.innerHTML;
     handleClick(bName);
+    buttonAnimation(bName);
   });
 }
 //to detect keypress
 document.addEventListener("keydown", function (event) {
   handleClick(event.key);
+  buttonAnimation(event.key);
 });
 
 //function to play sound
@@ -45,4 +47,13 @@ function handleClick(x) {
     default:
       console.log("nothing");
   }
+}
+
+//function for button animation
+function buttonAnimation(currentKey){
+    var activeButtons = document.querySelector("."+currentKey);
+    activeButtons.classList.add("pressed");
+    setTimeout(function(){
+      activeButtons.classList.remove("pressed");
+    },100);
 }
